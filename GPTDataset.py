@@ -23,3 +23,14 @@ class GPTDataset(torch.utils.data.Dataset):
 
   def __getitem__(self, idx):
     return self.input_ids[idx], self.target_ids[idx]
+
+def data_loader(text, batch_size=2, max_length=256, stride=128, shuffle=True, drop_last=True, num_workers=0):
+  # Initialise tokenizer
+  tokenizer = tiktoken.get_encoding("gpt2")
+
+  # Create Dataset
+  dataset = GPTDataset(text, tokenizer, max_length, stride)
+
+  #Create dataloader
+  dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, drop_last=drop_last, num_workers=num_workers)
+  return dataloader
