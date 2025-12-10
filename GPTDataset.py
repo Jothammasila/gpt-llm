@@ -1,6 +1,6 @@
 from torch.utils.data import Dataset, DataLoader
 
-class GPTDataset(Dataset):
+class gptataset(Dataset):
   def __init__(self, text, tokenizer, max_length, stride):
       super().__init__()
 
